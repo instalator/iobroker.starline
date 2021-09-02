@@ -1,0 +1,182 @@
+<!--
+    ioBroker.Starline Widget-Set 
+    version: "0.1.0"
+    Copyright 10.2015-2016 instalator <vvvalt@mail.ru>
+-->
+<link rel="stylesheet" href="widgets/starline/css/style.css" />
+<script type="text/javascript" src="widgets/starline/js/starline.js"></script>
+
+<script id="tplStarlineShowInstance"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/starline/img/state.png"></img>'
+		data-vis-attrs="oid_alias/id/changeOid;oid_ctemp/id;oid_etemp/id;oid_balance/id;oid_battery/id;oid_gsm_lvl/id;oid_gps_lvl/id;oid_status/id;oid_position_sat_qty/id;"
+        data-vis-attrs0="group.car_alr_state;oid_alr_state_door/id;oid_alr_state_add_h/id;oid_alr_state_add_l/id;oid_alr_state_hbrake/id;oid_alr_state_hood/id;oid_alr_state_ign/id;oid_alr_state_pbrake/id;oid_alr_state_shock_h/id;oid_alr_state_shock_l/id;oid_alr_state_tilt/id;oid_alr_state_trunk/id;"
+		data-vis-attrs1="group.car_state;oid_car_state_arm/id;oid_car_state_door/id;oid_car_state_hijack/id;oid_car_state_valet/id;oid_car_state_hood/id;oid_car_state_ign/id;oid_car_state_trunk/id;oid_car_state_hbrake/id;oid_car_state_pbrake/id;oid_car_state_run/id;"
+		data-vis-attrs2="group.car_control_check;oid_checkballance/id;oid_checktemp/id;"
+		data-vis-set="starline"
+        data-vis-type="val"
+		data-vis-beta="true"
+        data-vis-name="Show car status"> 
+    <div class="vis-widget <%== this.data.attr('class') %>" style="width:317px; height:237px" id="<%= this.data.attr('wid') %>" >
+		<div class="starline_header">
+			<div class="gpsgsm-cont">
+				<div class="gpsgsm-status">
+					<div class="clearfix">
+						<div style="float:left"><div class="gsm-status" data-level=""></div>
+							<div align="center" class="greyColor" style="color:#59626E;font-size:90%">gsm</div>
+						</div>
+						<div style="float:left;margin-left:10px;">
+							<div title="" class="gps-status" data-level=""></div>
+							<div class="greyColor" align="center" style="color:#59626E;font-size:90%">gps</div>
+						</div>
+						<div style="float:right"></div>
+					</div>
+				</div>
+            </div>
+            <div class="menu-item-title-container">
+                <div class="menu-status onoff off"></div>
+                    <div class="alias_value"></div>
+                    <span class="datedata"></span>
+            </div>
+        </div>
+
+			<div class="starline_body">
+				<div data-id="info" style="padding-top: 1px; position: relative; overflow: hidden;">
+					<div class="valet-border"><div class="valet-content" style="display: none;">Сервисный<br>режим</div></div>
+					<div class="hijack-border"><div class="hijack-content" style="display: none;">Режим<br>антиограбления</div></div>
+					<div class="car-status" style="height: 133px;">
+						<div class="car-tiltsensor-red"></div>
+						<div class="car-hammer1-red"></div>
+						<div class="car-hammer2-red"></div>
+						<div class="car-trunk-red"></div>
+						<div class="car-trunk"></div>
+						<div class="car-doors-red"></div>
+						<div class="car-doors"></div>
+						<div class="car-ign">
+							<div class="light"></div>
+							<div class="s1"></div>
+							<div class="s2"></div>
+							<div class="s3"></div>
+						</div>
+						<div class="car-arm">
+							<div class="s1"></div>
+							<div class="s2"></div>
+							<div class="s3"></div>
+							<div class="s4"></div>
+							<div class="s5"></div>
+						</div>
+						<div class="car-run"></div>
+						<div class="car-run-red"></div>
+						<div class="car-hood-red"></div>
+						<div class="car-parking"></div>
+						<div class="car-parking-red"></div>
+						<div class="car-hood"></div>
+						<div class="car-key"></div>
+						<div class="car-key-red"></div>
+						<div class="car-neutral" title="Режим «Программная нейтраль» включен"></div>
+						<div class="car-hfree" title="Режим «Свободные руки» включен"></div>
+						<div class="car"></div>
+					</div>
+					<div class="menu-item-tab-car-controls">
+						<ul class="under-buttons-panel">
+							<li class="balance" title="Баланс SIM-карты"><div class="balance_icon"></div><span class="balance_value"></span></li>
+							<li class="battery" title="Напряжение аккумулятора"><div class="battery_icon"></div><span class="battery_value"></span> В</li>
+							<li class="t1 ctemp" title="Температура в салоне"><div class="ctemp_icon"></div><span class="ctemp_value"></span> °C</li>
+							<li class="t2 etemp" title="Температура двигателя"><div class="etemp_icon"></div><span class="etemp_value"></span> °C</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+       <% vis.binds.starline.createWidgetStatus(this.data.wid, this.view, this.data, this.style);%>
+	</div>
+</script>
+
+<script id="tplStarlineButtonInstance"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/starline/img/btn.png"></img>'
+        data-vis-attrs="oid_alias/id/changeOid2;oid_car_state_hijack/id;oid_car_state_arm/id;oid_car_state_run/id;oid_car_state_ign/id;oid_car_state_valet/id;oid_car_state_shock_bpass/id;oid_car_state_tilt_bpass/id;oid_car_state_webasto/id;"
+        data-vis-attrs0="group.car_control;oid_control_hijack/id;oid_control_arm/id;oid_control_ign/id;oid_control_poke/id;oid_control_webasto/id;oid_control_shock_bpass/id;oid_control_tilt_bpass/id;oid_control_valet/id;oid_control_update_position/id;oid_control_out/id;"
+        data-vis-set="starline"
+        data-vis-type="val"
+		data-vis-beta="true"
+        data-vis-name="Control car alarm">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="width:317px; height:73px" id="<%= this.data.attr('wid') %>" >
+    <div class="control-container" style="padding: 0px; top: 0px; width: 317px; height:73px; overflow: hidden; padding: 0px; outline: none;">
+		<div class="control-button-toleft off"></div>
+		<div class="control-button-toright"></div>
+		<div class="control-scroll" style="width:267px;height:73px;overflow:hidden;position:relative;margin: 0 auto">
+			<div class="control-items">
+				<div class="control-item" style="width:267px;float:left;position:relative;">
+					<div title="Включение режима антиограбления" data-id="hijack" data-number="0" data-command="31" class="hijack control-button control-left2">
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-hijack" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat 0px 0px;"></div>
+						</div>
+					</div>
+					<div title="Снятие/постановка на охрану" data-id="arm" data-number="1" data-command="5" class="arm control-button control-left1">
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-arm" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat -72px 0px;"></div>
+						</div>
+					</div>
+					<div title="Включение/выключение двигателя" data-id="ign" data-number="2" data-command="7" class="ign control-button control-circle">
+						<div class="control-push"></div>	
+						<div class="control-icon">
+							<div class="control-icon-ign" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat -36px 0px;"></div>
+						</div>
+					</div>
+					<div title="Сигнал" data-id="poke" data-number="3" data-command="36" class="poke control-button control-right1">
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-poke" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat -144px 0px;"></div>
+						</div>
+					</div>
+					<div title="Управление предпусковым подогревом двигателя" data-id="webasto" data-number="4" data-command="81" class="webasto control-button control-right2">
+						<div class="control-push"></div>	
+						<div class="control-icon">
+							<div class="control-icon-webasto" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) -108px 0px no-repeat;">	</div>
+						</div>
+					</div>
+				</div>
+				<div class="control-item" style="width:267px;float:left;position:relative;">	
+					<div title="Выключение датчика удара" data-id="shock_bpass" data-number="5" data-command="12" class="shock_bpass control-button control-left2">	
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-shock_bpass" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) -252px 0px no-repeat;">	</div>	
+						</div>	
+					</div>
+					<div title="Отключение датчика наклона" data-id="tilt_bpass" data-number="6" data-command="15" class="tilt_bpass control-button control-left1">
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-tilt_bpass" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) -324px 0px no-repeat;"></div>
+							</div>
+					</div>
+					<div title="Включить/выключить сервисный режим" data-id="valet" data-number="7" data-command="50" class="valet control-button control-circle">
+						<div class="control-push"></div>
+						<div class="control-icon">
+					<div class="control-icon-valet" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) -288px 0px no-repeat;"></div>
+						</div>
+					</div>
+					<div title="Запрос координат" data-id="update_position" data-number="8" data-command="43" class="update_position control-button control-right1">
+						<div class="control-push"></div>
+						<div class="control-icon">
+							<div class="control-icon-update_position" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat -360px 0px;"></div>
+						</div>
+					</div>	
+					<div title="Активировать доп канал" data-id="add-command" data-number="9" data-command="0" class="add-command control-button control-right2">	
+					<div class="control-push"></div>
+						<div class="control-icon">
+						<div class="control-icon-out" style="background:url(./widgets/starline/img/buttons-icon-set_white.png) no-repeat -180px 0px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+       <% vis.binds.starline.createWidgetControl(this.data.wid, this.view, this.data, this.style);%>
+	</div>
+</script>
+
+

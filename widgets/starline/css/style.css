@@ -1,0 +1,1005 @@
+.starline_header {
+    height: 47px;
+    border: 0;
+    background: #1f2833;
+    border-top: 1px solid #293442;
+    border-bottom: 0;
+    color: #59626E;
+    font-size: 90%;
+    font-family: helvetica, arial;
+}
+.datedata {
+}
+
+.starline_body {
+    border: 0;
+    background: #1f2833;
+    border-top: 1px solid #293442;
+    border-bottom: 0;
+    color: #59626E;
+    font-size: 90%;
+}
+
+.gpsgsm-cont {
+    float: right;
+    width: 70px;
+    padding-top: 2px
+}
+
+.gpsgsm-status {
+    background: #1F2833
+}
+
+.gsm-status {
+    width: 24px;
+    height: 24px;
+    background: url(../img/icons-gsm-gps.png) no-repeat -24px -96px
+}
+
+.gsm-status[data-level="0"] {
+    background-position: -24px -96px
+}
+
+.gsm-status[data-level="1"] {
+    background-position: -24px -72px
+}
+
+.gsm-status[data-level="2"], .gsm-status[data-level="3"] {
+    background-position: -24px -48px
+}
+
+.gsm-status[data-level="4"] {
+    background-position: -24px -24px
+}
+
+.gsm-status[data-level="5"] {
+    background-position: -24px 0
+}
+
+.gps-status {
+    width: 24px;
+    height: 24px;
+    background: url(../img/icons-gsm-gps.png) no-repeat left -96px
+}
+
+.gps-status[data-level="0"] {
+    background-position: left -96px
+}
+
+.gps-status[data-level="1"] {
+    background-position: left -72px
+}
+
+.gps-status[data-level="2"] {
+    background-position: left -48px
+}
+
+.gps-status[data-level="3"] {
+    background-position: left -24px
+}
+
+.gps-status[data-level="4"] {
+    background-position: left 0
+}
+
+.valet-border {
+    width: 100%;
+    height: 157px;
+    position: absolute;
+    z-index: 15
+}
+
+.valet-border, .hijack-border {
+    background: url(../img/car-servicemode-bg.png) no-repeat 50% 25px;
+    display: none
+}
+
+.valet-content {
+    background: url(../img/car-servicemode-icon.png) no-repeat 0 0;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #E4C82B;
+    padding: 0 48px;
+    animation: 1.6s blink linear;
+    -webkit-animation: 1.6s blink linear;
+    -moz-animation: 1.6s blink linear;
+    -o-animation: 1.6s blink linear;
+    -ms-animation: 1.6s blink linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    width: 100px;
+    margin: 75px auto;
+    transform: translateX(17px)
+}
+
+.hijack-border {
+    width: 260px;
+    height: 157px;
+    position: absolute;
+    left: 50%;
+    margin-left: -140px;
+    z-index: 15;
+    display: none;
+    background: rgba(31, 40, 51, .9)
+}
+
+.hijack-content {
+    background: url(../img/car-arbmode-icon.png) no-repeat 0 -8px;
+    width: 80px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #db2e00;
+    margin: 51px 25px;
+    padding: 0 48px;
+    animation: 1.6s blink linear;
+    -webkit-animation: 1.6s blink linear;
+    -moz-animation: 1.6s blink linear;
+    -o-animation: 1.6s blink linear;
+    -ms-animation: 1.6s blink linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default
+}
+
+.car-status {
+    width: 260px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto
+}
+
+.car-hammer1-red {
+    background: url(../img/car-hammer1-red.png) no-repeat left top
+}
+
+.car-tiltsensor-red {
+    background: url(../img/car-tiltsensor-red.png) no-repeat left top
+}
+
+.car {
+    background: url(../img/car.png) no-repeat left top
+}
+
+.car, .car-arm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-arm {
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease;
+    z-index: 3
+}
+
+div.no-transition div.s1, div.no-transition div.s2, div.no-transition div.s3, div.no-transition div.s4, div.no-transition div.s5 {
+    -moz-transition: none;
+    -webkit-transition: none;
+    transition: none
+}
+
+.car-arm .s1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/car-sphere1.png) no-repeat left top;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-arm .s1.red {
+    background: url(../img/car-sphere1-red.png) no-repeat left top
+}
+
+.car-arm .s2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/car-sphere2.png) no-repeat left top;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-arm .s2.red {
+    background: url(../img/car-sphere2-red.png) no-repeat left top
+}
+
+.car-arm .s3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/car-sphere3.png) no-repeat left top;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-arm .s3.red {
+    background: url(../img/car-sphere3-red.png) no-repeat left top
+}
+
+.car-arm .s4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/car-sphere4.png) no-repeat left top;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-arm .s4.red {
+    background: url(../img/car-sphere4-red.png) no-repeat left top
+}
+
+.car-arm .s5 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/car-sphere5.png) no-repeat left top;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-arm .s5.red {
+    background: url(../img/car-sphere5-red.png) no-repeat left top
+}
+
+.car-arm.on .s1, .car-arm.on .s2, .car-arm.on .s3, .car-arm.on .s4, .car-arm.on .s5 {
+    opacity: 1
+}
+
+.car-ign {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-run, .car-run-red, .car-ign .light, .car-ign .s1, .car-ign .s2, .car-ign .s3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-run {
+    background: url(../img/car-key.png) no-repeat left top
+}
+
+.car-run-red {
+    background: url(../img/car-key-red.png) no-repeat left top
+}
+
+.car-ign .light {
+    background: url(../img/car-light.png) no-repeat left top
+}
+
+.car-ign .s1 {
+    background: url(../img/car-smoke.gif) no-repeat left top
+}
+
+.car-ign .s2 {
+    background: url(../img/car-smoke2.png) no-repeat left top
+}
+
+.car-ign .s3 {
+    background: url(../img/car-smoke3.png) no-repeat left top
+}
+
+.car-ign .s1.on, .car-ign .s2.on, .car-ign .s3.on {
+    opacity: 1
+}
+
+.car-ign.on .light {
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.blink {
+    animation: 1s blink linear;
+    -webkit-animation: 1s blink linear;
+    -moz-animation: 1s blink linear;
+    -o-animation: 1s blink linear;
+    -ms-animation: 1s blink linear
+}
+
+.blink, .car-ign.blink .light {
+    transform-origin: 0% 0%;
+    -webkit-transform-origin: 0% 0%;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite
+}
+
+.car-ign.blink .light {
+    animation: .6s blink linear;
+    -webkit-animation: .6s blink linear;
+    -moz-animation: .6s blink linear;
+    -o-animation: .6s blink linear;
+    -ms-animation: .6s blink linear
+}
+
+.car-doors, .car-doors-red, .car-trunk, .car-trunk-red, .car-hammer1-red, .car-hammer2-red, .car-tiltsensor-red {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-hood {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-hood-red, .car-key, .car-key-red, .car-parking, .car-parking-red {
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%
+}
+
+.car-neutral, .car-hfree {
+    z-index: 10;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease
+}
+
+.car-doors {
+    background: url(../img/car-door.png) no-repeat left top
+}
+
+.car-doors-red {
+    background: url(../img/car-door-red.png) no-repeat left top
+}
+
+.car-trunk {
+    background: url(../img/car-trunk.png) no-repeat left top
+}
+
+.car-trunk-red {
+    background: url(../img/car-trunk-red.png) no-repeat left top
+}
+
+.car-hammer2-red {
+    background: url(../img/car-hammer2-red.png) no-repeat left top
+}
+
+.car-hood {
+    opacity: 1;
+    background: url(../img/car-hood.png) no-repeat left top
+}
+
+.car-hood-red {
+    background: url(../img/car-hood-red.png) no-repeat left top
+}
+
+.car-key {
+    background: url(../img/car-key.png) no-repeat 116px 76px
+}
+
+.car-key-red {
+    background: url(../img/car-key-red.png) no-repeat 116px 76px
+}
+
+.car-parking {
+    background: url(../img/car-parking.png) no-repeat left top
+}
+
+.car-parking-red {
+    background: url(../img/car-parking-red.png) no-repeat left top
+}
+
+.car-neutral {
+    background: url(../img/car-neutral.png) no-repeat left top;
+    top: 50px;
+    left: 160px;
+    width: 26px;
+    height: 26px
+}
+
+.car-hfree {
+    background: url(../img/car-handsfree.png) no-repeat left top;
+    top: 40px;
+    left: 118px;
+    width: 26px;
+    height: 26px
+}
+
+.menu-item-tab-car-controls ul {
+    overflow: hidden
+}
+
+.menuSettings {
+    width: auto !important
+}
+
+.menu-item-tab-car-controls ul li.balance {
+    float: left;
+    text-align: center;
+    width: 60px;
+    margin-right: 1px;
+    padding: 5px 0 3px
+}
+
+.balance_icon {
+    width: 30px;
+    height: 22px;
+    margin: 0 auto 4px;
+    background: url(../img/status.png) no-repeat 0 0
+}
+
+.menu-item-tab-car-controls ul li.battery {
+    float: left;
+    text-align: center;
+    width: 60px;
+    margin-right: 1px;
+    padding: 5px 0 3px
+}
+
+.battery_icon {
+    width: 30px;
+    height: 22px;
+    margin: 0 auto 4px;
+    background: url(../img/status.png) no-repeat -31px 0
+}
+
+.menu-item-tab-car-controls ul li.ctemp {
+    float: left;
+    text-align: center;
+    width: 60px;
+    margin-right: 1px;
+    padding: 5px 0 3px
+}
+
+.ctemp_icon {
+    width: 30px;
+    height: 22px;
+    margin: 0 auto 4px;
+    background: url(../img/status.png) no-repeat -62px 0
+}
+
+.menu-item-tab-car-controls ul li.etemp {
+    float: left;
+    text-align: center;
+    width: 60px;
+    padding: 5px 0 3px
+}
+
+.etemp_icon {
+    width: 30px;
+    height: 22px;
+    margin: 0 auto 4px;
+    background: url(../img/status.png) no-repeat -93px 0
+}
+
+.menu-item-tab-car-controls ul li.balance:hover, .menu-item-tab-car-controls ul li.battery:hover, .menu-item-tab-car-controls ul li.ctemp:hover, .menu-item-tab-car-controls ul li.etemp:hover {
+    background: #2a333d
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.under-buttons-panel {
+    margin: 0 auto 0;
+    width: 243px;
+    list-style: none;
+    padding: 0;
+    color: #fff;
+    font-size: 90%
+}
+
+.menu-item-tab-car-controls ul li {
+    float: left;
+    width: 52px;
+    height: 52px;
+    -webkit-transition: all .5s ease;
+    cursor: pointer;
+    position: relative;
+    font-size: 110%;
+    font-family: helvetica, arial
+}
+
+.menu-item-title-container {
+    margin-right: 90px;
+    height: 45px;
+	padding-top: 6px;
+}
+
+.menu-item-tab-car-controls ul li:hover {
+    opacity: .8
+}
+
+.blink_me {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .2
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .2
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .2
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-o-keyframes blink {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .2
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+.toggle-edit-button {
+    cursor: pointer;
+    margin: 2px 0 0 6px;
+    width: 44px;
+    height: 44px;
+    background: url(../img/icons-edit-buttons.png) no-repeat center bottom;
+    opacity: .3;
+    transition: opacity .3s ease;
+    -webkit-transition: opacity .3s ease;
+    -moz-transition: opacity .3s ease
+}
+
+.toggle-edit-button:hover {
+    opacity: .7
+}
+
+.toggle-edit-button.disable:hover {
+    opacity: .3;
+    cursor: default
+}
+
+.control-scroll.editing .toggle-edit-button {
+    opacity: 1
+}
+
+.toggle-edit-buttons {
+    position: absolute;
+    z-index: 10;
+    margin: -18px 0 0 5px
+}
+
+.toggle-edit-buttons, .control-scroll .toggle-edit-buttons > a {
+    transition: opacity .3s ease;
+    -webkit-transition: opacity .3s ease;
+    -moz-transition: opacity .3s ease
+}
+
+.control-scroll .toggle-edit-buttons > a {
+    display: block;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: #28303b url(../img/icon-edit-blue.png) no-repeat center 4px;
+    border: 1px solid #151b24;
+    opacity: .6;
+    box-shadow: inset 0 1px 0 #39505e
+}
+
+.control-button .control-icon-reset {
+    position: absolute;
+    z-index: 10;
+    opacity: 1;
+    margin: -5px 0 0 31px;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease
+}
+
+.control-button .control-icon-reset a {
+    display: none;
+    opacity: 0;
+    margin-top: -5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: #28303b url(../img/icon-button-control-delete.png) no-repeat center center;
+    border: 1px solid #151b24;
+    box-shadow: inset 0 1px 0 #39505e
+}
+
+.control-button.control-circle .control-icon-reset {
+    margin: 4px 0 0 42px
+}
+
+.control-button {
+    cursor: pointer;
+    position: relative
+}
+
+.control-button, .control-button .control-push {
+    transition: opacity .3s ease;
+    -webkit-transition: opacity .3s ease;
+    -moz-transition: opacity .3s ease
+}
+
+.control-left2 {
+    float: left;
+    margin-top: 10px;
+    width: 50px;
+    height: 49px
+}
+
+.control-left2 .control-push {
+    /*z-index:2;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 49px;
+    background: url(../img/button2-left-push.png) no-repeat left top;
+    opacity: 0
+}
+
+.control-left2 .control-icon {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 49px;
+    background: url(../img/button2-left.png) no-repeat left top
+}
+
+.control-left2 .control-icon > div {
+    margin: 6px 0 0 7px
+}
+
+.control-left2.on .control-icon {
+    background: url(../img/button2-left-on.png) no-repeat left top
+}
+
+.control-left1 {
+    float: left;
+    margin-top: 10px;
+    width: 57px;
+    height: 49px
+}
+
+.control-left1 .control-push {
+    /*z-index:2;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 57px;
+    height: 49px;
+    background: url(../img/button1-left-push.png) no-repeat left top;
+    opacity: 0
+}
+
+.control-left1 .control-icon {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 57px;
+    height: 49px;
+    background: url(../img/button1-left.png) no-repeat left top
+}
+
+.control-left1 .control-icon > div {
+    margin: 6px 0 0 6px
+}
+
+.control-left1.on .control-icon {
+    background: url(../img/button1-left-on.png) no-repeat left top
+}
+
+.control-circle {
+    z-index: 5;
+    position: absolute;
+    left: 97px;
+    width: 70px;
+    height: 71px
+}
+
+.control-circle .control-push {
+    /*z-index:6;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 71px;
+    background: url(../img/button-circle-push.png) no-repeat left top;
+    opacity: 0
+}
+
+.control-circle .control-icon {
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 71px;
+    background: url(../img/button-circle.png) no-repeat center center
+}
+
+.control-circle .control-icon > div {
+    margin: 16px 0 0 16px
+}
+
+.control-circle.on .control-icon {
+    background: url(../img/button-circle-on.png) no-repeat left top
+}
+
+.control-right1 {
+    float: left;
+    margin: 10px 0 0 50px;
+    width: 57px;
+    height: 49px
+}
+
+.control-right1 .control-push {
+    /*z-index:2;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 57px;
+    height: 49px;
+    background: url(../img/button1-right-push.png) no-repeat left top;
+    opacity: 0
+}
+
+.control-right1 .control-icon {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 57px;
+    height: 49px;
+    background: url(../img/button1-right.png) no-repeat left top
+}
+
+.control-right1 .control-icon > div {
+    margin: 6px 0 0 14px
+}
+
+.control-right1.on .control-icon {
+    background: url(../img/button1-right-on.png) no-repeat left top
+}
+
+.control-right2 {
+    margin-top: 10px;
+    float: left;
+    width: 50px;
+    height: 49px
+}
+
+.control-right2 .control-push {
+    /*z-index:2;
+    */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 49px;
+    background: url(../img/button2-right-push.png) no-repeat left top;
+    opacity: 0
+}
+
+.control-right2 .control-icon {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 49px;
+    background: url(../img/button2-right.png) no-repeat left top
+}
+
+.control-right2 .control-icon > div {
+    margin: 6px 0 0 6px
+}
+
+.control-right2.on .control-icon {
+    background: url(../img/button2-right-on.png) no-repeat left top
+}
+
+.control-button:hover {
+    opacity: .7
+}
+
+.control-left2:active .control-push, .control-left1:active .control-push, .control-circle:active .control-push, .control-right1:active .control-push, .control-right2:active .control-push {
+    opacity: .6
+}
+
+.control-container {
+    position: relative;
+    height: 100%;
+    background: #2e3742 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.control-container:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.control-icon div {
+    width: 36px;
+    height: 36px
+}
+
+.control-button.disabled .control-icon {
+    opacity: .2
+}
+
+.control-button.disabled .control-icon div {
+    opacity: .9
+}
+
+.control-icon-add-command {
+    margin: 6px 0 0 6px;
+    background: url(../img/buttons-icon-set_black.png) no-repeat -180px 0
+}
+
+.control-button-toleft {
+    z-index: 16;
+    opacity: .6;
+    left: -5px;
+    top: 13px;
+    position: absolute;
+    width: 30px;
+    height: 42px;
+    background: #1f2833 url(../img/menu-item-info-arrows-set.png) no-repeat right -84px;
+    transition: opacity .5s ease;
+    -webkit-transition: opacity .5s ease;
+    -moz-transition: opacity .5s ease
+}
+
+.white .control-button-toleft {
+    left: -27px
+}
+
+.control-button-toleft.off {
+    background: #1f2833 url(../img/menu-item-info-arrows-set.png) no-repeat right -126px
+}
+
+.control-button-toright {
+    z-index: 16;
+    opacity: .6;
+    right: -2px;
+    top: 13px;
+    position: absolute;
+    width: 30px;
+    height: 42px;
+    background: #1f2833 url(../img/menu-item-info-arrows-set.png) no-repeat left 0;
+    transition: opacity .5s ease;
+    -webkit-transition: opacity .5s ease;
+    -moz-transition: opacity .5s ease
+}
+
+.control-button-toright.off {
+    background: #1f2833 url(../img/menu-item-info-arrows-set.png) no-repeat left -42px
+}
+
+.control-button-toleft:not(.off):hover, .control-button-toright:not(.off):hover {
+    opacity: 1;
+    cursor: pointer
+}
+
+.control-items {
+    width: 534px;
+    position: absolute;
+    z-index: 15;
+    margin: 0 0 0 2px
+}
+
+.control-button.disabled, .control-button.disabled:hover, .control-button.disabled:active, .control-button.disabled:active .control-push {
+    cursor: default
+}
+
+.control-button.disabled[data-id="add-command"] {
+    cursor: pointer
+}
+
+
+.menu-status.off {
+    background: url(../img/offline_black.png) no-repeat 13px 12px;
+    float: left;
+    width: 25px;
+    padding: 11px 0 0 10px;
+    height: 36px;
+}
+
+.menu-status.on {
+    background: url(../img/online_black.png) no-repeat 13px 12px;
+    float: left;
+    width: 25px;
+    padding: 11px 0 0 10px;
+    height: 20px;
+}
