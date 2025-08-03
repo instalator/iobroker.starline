@@ -1,12 +1,26 @@
 {
   "common": {
     "name": "starline",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "news": {
+      "2.0.0": {
+        "en": "latest working version of 2021",
+        "de": "latest working version of 2021",
+        "ru": "latest working version of 2021",
+        "uk": "latest working version of 2021",
+        "pt": "latest working version of 2021",
+        "nl": "latest working version of 2021",
+        "fr": "latest working version of 2021",
+        "it": "latest working version of 2021",
+        "es": "latest working version of 2021",
+        "pl": "latest working version of 2021",
+        "zh-cn": "latest working version of 2021"
+      },
       "1.1.3": {
         "en": "fixed error parse mayak",
         "de": "fixed error parse mayak",
         "ru": "fixed error parse mayak",
+        "uk": "fixed error parse mayak",
         "pt": "fixed error parse mayak",
         "nl": "fixed error parse mayak",
         "fr": "fixed error parse mayak",
@@ -19,6 +33,7 @@
         "en": "fixed objects\nfixed interval",
         "de": "fixed objects\nfixed interval",
         "ru": "fixed objects\nfixed interval",
+        "uk": "fixed objects\nfixed interval",
         "pt": "fixed objects\nfixed interval",
         "nl": "fixed objects\nfixed interval",
         "fr": "fixed objects\nfixed interval",
@@ -31,6 +46,7 @@
         "en": "fixed send command",
         "de": "fixed send command",
         "ru": "fixed send command",
+        "uk": "fixed send command",
         "pt": "fixed send command",
         "nl": "fixed send command",
         "fr": "fixed send command",
@@ -43,6 +59,7 @@
         "en": "fixed auth\nadded support admin3",
         "de": "fixed auth\nadded support admin3",
         "ru": "fixed auth\nadded support admin3",
+        "uk": "fixed auth\nadded support admin3",
         "pt": "fixed auth\nadded support admin3",
         "nl": "fixed auth\nadded support admin3",
         "fr": "fixed auth\nadded support admin3",
@@ -52,30 +69,49 @@
         "zh-cn": "fixed auth\nadded support admin3"
       }
     },
-    "title": "Autoalarm StarLine",
+    "titleLang": {
+      "en": "StarLine Telematics",
+      "de": "StarLine Telematik",
+      "ru": "StarLine Телематика",
+      "uk": "StarLine Телематика",
+      "pt": "StarLine Telematização",
+      "nl": "StarLine Telematiek",
+      "fr": "StarLine Télématique",
+      "it": "StarLine Telematica",
+      "es": "StarLine Telematización",
+      "pl": "StarLine Telematyka",
+      "zh-cn": "StarLine 远程信息处理"
+    },
     "desc": {
       "en": "Adapter for car alarm StarLine Telematics 2.0",
-      "de": "Adapter für Autoalarm StarLine Telematics 2.0",
+      "de": "Adapter für StarLine Alarmanlage Telematics 2.0",
       "ru": "Адаптер для автосигнализации StarLine Telematics 2.0",
+      "uk": "Адаптер для автосигналізації StarLine Telematics 2.0",
       "pt": "Adaptador para alarme de carro StarLine Telematics 2.0",
       "nl": "Adapter voor auto-alarm StarLine Telematics 2.0",
       "fr": "Adaptateur pour alarme de voiture StarLine Telematics 2.0",
       "it": "Adattatore per allarme auto StarLine Telematics 2.0",
       "es": "Adaptador para alarma de coche StarLine Telematics 2.0",
       "pl": "Adapter do alarmu samochodowego StarLine Telematics 2.0",
-      "zh-cn": "汽车警报器适配器StarLine Telematics 2.0"
+      "zh-cn": "汽车警报器适配器 StarLine Telematics 2.0"
     },
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT"
+    },
+    "tier": "community",
     "authors": [
-      "instalator"
+      "instalator","tglynx"
     ],
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "logo-192x192.png",
     "enabled": false,
     "compact": true,
-    "materialize": true,
-    "extIcon": "https://raw.githubusercontent.com/instalator/ioBroker.starline/master/admin/logo-192x192.png",
+    "adminUI": {
+      "config": "json",
+      "configFile": "admin/jsonConfig.json"
+    },
+    "extIcon": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/admin/logo-192x192.png",
     "keywords": [
       "starline",
       "vis"
@@ -83,6 +119,16 @@
     "readme": "https://github.com/instalator/ioBroker.starline/blob/master/README.md",
     "loglevel": "info",
     "type": "vehicle",
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "dependencies": [],
+    "js-controller": ">=5.0.19",
+    "protectedNative": [
+      "password"
+    ],
+    "encryptedNative": [
+      "password"
+    ],
     "restartAdapters": [
       "vis"
     ]
