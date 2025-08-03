@@ -368,8 +368,8 @@ function processDetailedDeviceData(deviceData, deviceAlias) {
     
     // Services
     let services = deviceData.services || {};
-    setObjectfun(deviceAlias + '.services.control', services.control || '');
-    setObjectfun(deviceAlias + '.services.settings', services.settings || '');
+    setObjectfun(deviceAlias + '.services.control', String(services.control || ''));
+    setObjectfun(deviceAlias + '.services.settings', String(services.settings || ''));
     
     adapter.log.info('Successfully processed detailed data for device: ' + deviceAlias);
 }
