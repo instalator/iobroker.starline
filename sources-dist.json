@@ -2,7 +2,7 @@
   "sources": {
     "starline": {
       "meta": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/io-package.json",
-      "icon": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/admin/logo-192x192.png",
+      "icon": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/admin/starline_git.jpg",
       "type": "adapter"
     }
   }

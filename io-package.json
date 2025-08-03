@@ -3,6 +3,19 @@
     "name": "starline",
     "version": "2.1.0",
     "news": {
+      "2.1.0": {
+        "en": "Modernized adapter for current StarLine API with enhanced security and internationalization",
+        "de": "Modernisierter Adapter für aktuelle StarLine API mit verbesserter Sicherheit und Internationalisierung",
+        "ru": "Модернизированный адаптер для текущего API StarLine с улучшенной безопасностью и интернационализацией",
+        "uk": "Модернізований адаптер для поточного API StarLine з покращеною безпекою та інтернаціоналізацією",
+        "pt": "Adaptador modernizado para API StarLine atual com segurança aprimorada e internacionalização",
+        "nl": "Gemoderniseerde adapter voor huidige StarLine API met verbeterde beveiliging en internationalisatie",
+        "fr": "Adaptateur modernisé pour l'API StarLine actuelle avec sécurité améliorée et internationalisation",
+        "it": "Adattatore modernizzato per l'API StarLine attuale con sicurezza migliorata e internazionalizzazione",
+        "es": "Adaptador modernizado para API StarLine actual con seguridad mejorada e internacionalización",
+        "pl": "Zmodernizowany adapter dla aktualnego API StarLine z ulepszonym bezpieczeństwem i internacjonalizacją",
+        "zh-cn": "为当前StarLine API现代化的适配器，具有增强的安全性和国际化"
+      },
       "2.0.0": {
         "en": "latest working version of 2021",
         "de": "latest working version of 2021",
@@ -96,9 +109,10 @@
       "zh-cn": "汽车警报器适配器 StarLine Telematics 2.0"
     },
     "licenseInformation": {
-      "license": "MIT"
+      "license": "MIT",
+      "type": "free"
     },
-    "tier": "community",
+    "tier": 1,
     "authors": [
       "instalator","tglynx"
     ],
@@ -121,8 +135,9 @@
     "type": "vehicle",
     "connectionType": "cloud",
     "dataSource": "poll",
-    "dependencies": [],
-    "js-controller": ">=5.0.19",
+    "dependencies": [
+      "js-controller>=5.0.19"
+    ],
     "protectedNative": [
       "password"
     ],
