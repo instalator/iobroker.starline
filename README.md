@@ -1,9 +1,6 @@
 ![Logo](admin/starline_git.jpg)
 # ioBroker.starline
 
-[![Donate](https://img.shields.io/badge/donate-YooMoney-green)](https://sobe.ru/na/instalator)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PFUALWTR2CTPY)
-
 The adapter lets you retrieve vehicle status data through the StarLine Telematics service (https://starline-online.ru).
 
 ##### Control of the main alarm functions:
