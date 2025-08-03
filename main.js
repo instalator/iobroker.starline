@@ -266,11 +266,12 @@ function getDetailedDeviceData(device_id, deviceAlias) {
     options.headers = {
         'Host':            'starline-online.ru',
         'User-Agent':      'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0',
-        'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+        'Accept':          'application/json, text/javascript, */*; q=0.01',
+        'Accept-Language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7',
         'Referer':         'https://starline-online.ru/site/map',
         'Cookie':          'PHPSESSID=' + sesId + '; userAgentId=' + userAgentId + '; lang=ru;',
-        'Connection':      'keep-alive'
+        'Connection':      'keep-alive',
+        'x-requested-with': 'XMLHttpRequest'
     };
     
     let req = https.request(options, (res) => {
