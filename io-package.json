@@ -118,7 +118,7 @@
     ],
     "platform": "Javascript/Node.js",
     "mode": "daemon",
-    "icon": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/main/admin/logo-192x192.png",
+    "icon": "logo-192x192.png",
     "enabled": false,
     "compact": true,
     "adminUI": {
