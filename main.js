@@ -256,6 +256,123 @@ function get_data(){
     });
 }
 
+function getDetailedDeviceData(device_id, deviceAlias) {
+    let options = {
+        hostname: 'starline-online.ru',
+        port:     443,
+        path:     '/device/' + device_id,
+        method:   'GET'
+    };
+    options.headers = {
+        'Host':            'starline-online.ru',
+        'User-Agent':      'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0',
+        'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+        'Referer':         'https://starline-online.ru/site/map',
+        'Cookie':          'PHPSESSID=' + sesId + '; userAgentId=' + userAgentId + '; lang=ru;',
+        'Connection':      'keep-alive'
+    };
+    
+    let req = https.request(options, (res) => {
+        let detailedData = '';
+        adapter.log.debug('Getting detailed data for device: ' + deviceAlias);
+        
+        res.on('data', (chunk) => {
+            detailedData += chunk;
+        });
+        res.on('end', () => {
+            if (res.statusCode === 200) {
+                try {
+                    let deviceData = JSON.parse(detailedData);
+                    adapter.log.debug('Received detailed data for ' + deviceAlias + ': ' + detailedData.substring(0, 200) + '...');
+                    processDetailedDeviceData(deviceData, deviceAlias);
+                } catch (e) {
+                    adapter.log.error('Error parsing detailed device data: ' + e.message);
+                }
+            } else {
+                adapter.log.error('Failed to get detailed data for device ' + deviceAlias + ': ' + res.statusCode);
+            }
+        });
+    });
+    req.end();
+    req.on('error', (err) => {
+        adapter.log.error('Error getting detailed data for device ' + deviceAlias + ': ' + err);
+    });
+}
+
+function processDetailedDeviceData(deviceData, deviceAlias) {
+    // Basic device information
+    setObjectfun(deviceAlias + '.alias', deviceData.alias, deviceAlias);
+    setObjectfun(deviceAlias + '.device_id', deviceData.device_id);
+    setObjectfun(deviceAlias + '.status', deviceData.status);
+    setObjectfun(deviceAlias + '.shared_for_me', deviceData.shared_for_me);
+    setObjectfun(deviceAlias + '.battery', deviceData.battery || 0);
+    setObjectfun(deviceAlias + '.fw_version', deviceData.fw_version || '');
+    setObjectfun(deviceAlias + '.imei', deviceData.imei || '');
+    setObjectfun(deviceAlias + '.mon_type', deviceData.mon_type || 0);
+    setObjectfun(deviceAlias + '.type', deviceData.type || 0);
+    setObjectfun(deviceAlias + '.sn', deviceData.sn || '');
+    setObjectfun(deviceAlias + '.ts_activity', deviceData.ts_activity || 0);
+    setObjectfun(deviceAlias + '.showInsuranceEvents', deviceData.showInsuranceEvents || false);
+    setObjectfun(deviceAlias + '.ctemp', deviceData.ctemp || 0);
+    setObjectfun(deviceAlias + '.gps_lvl', deviceData.gps_lvl || 0);
+    setObjectfun(deviceAlias + '.gsm_lvl', deviceData.gsm_lvl || 0);
+    setObjectfun(deviceAlias + '.phone', deviceData.phone || '');
+    
+    // Position data
+    let positionData = deviceData.position || {};
+    setObjectfun(deviceAlias + '.position.sat_qty', positionData.sat_qty || 0);
+    setObjectfun(deviceAlias + '.position.ts', positionData.ts || 0);
+    setObjectfun(deviceAlias + '.position.longitude', positionData.x || 0);
+    setObjectfun(deviceAlias + '.position.latitude', positionData.y || 0);
+    setObjectfun(deviceAlias + '.position.dir', positionData.dir || 0);
+    setObjectfun(deviceAlias + '.position.s', positionData.s || 0);
+    
+    // Car state - now we have the real data!
+    let carState = deviceData.car_state || {};
+    adapter.log.debug('Processing car states for ' + deviceAlias + ': ' + JSON.stringify(carState));
+    
+    setObjectfun(deviceAlias + '.car_state.add_sens_bpass', carState.add_sens_bpass || false);
+    setObjectfun(deviceAlias + '.car_state.alarm', carState.alarm || false);
+    setObjectfun(deviceAlias + '.car_state.arm', carState.arm || false);
+    setObjectfun(deviceAlias + '.car_state.door', carState.door || false);
+    setObjectfun(deviceAlias + '.car_state.hbrake', carState.hbrake || false);
+    setObjectfun(deviceAlias + '.car_state.hijack', carState.hijack || false);
+    setObjectfun(deviceAlias + '.car_state.hood', carState.hood || false);
+    setObjectfun(deviceAlias + '.car_state.ign', carState.ign || false);
+    setObjectfun(deviceAlias + '.car_state.out', carState.out || false);
+    setObjectfun(deviceAlias + '.car_state.pbrake', carState.pbrake || false);
+    setObjectfun(deviceAlias + '.car_state.r_start', carState.r_start || false);
+    setObjectfun(deviceAlias + '.car_state.run', carState.run || false);
+    setObjectfun(deviceAlias + '.car_state.shock_bpass', carState.shock_bpass || false);
+    setObjectfun(deviceAlias + '.car_state.tilt_bpass', carState.tilt_bpass || false);
+    setObjectfun(deviceAlias + '.car_state.trunk', carState.trunk || false);
+    setObjectfun(deviceAlias + '.car_state.valet', carState.valet || false);
+    setObjectfun(deviceAlias + '.car_state.webasto', carState.webasto || false);
+    
+    // Car alarm state
+    let carAlrState = deviceData.car_alr_state || {};
+    setObjectfun(deviceAlias + '.car_alr_state.add_h', carAlrState.add_h || false);
+    setObjectfun(deviceAlias + '.car_alr_state.add_l', carAlrState.add_l || false);
+    setObjectfun(deviceAlias + '.car_alr_state.door', carAlrState.door || false);
+    setObjectfun(deviceAlias + '.car_alr_state.hbrake', carAlrState.hbrake || false);
+    setObjectfun(deviceAlias + '.car_alr_state.hijack', carAlrState.hijack || false);
+    setObjectfun(deviceAlias + '.car_alr_state.hood', carAlrState.hood || false);
+    setObjectfun(deviceAlias + '.car_alr_state.ign', carAlrState.ign || false);
+    setObjectfun(deviceAlias + '.car_alr_state.pbrake', carAlrState.pbrake || false);
+    setObjectfun(deviceAlias + '.car_alr_state.shock_h', carAlrState.shock_h || false);
+    setObjectfun(deviceAlias + '.car_alr_state.shock_l', carAlrState.shock_l || false);
+    setObjectfun(deviceAlias + '.car_alr_state.tilt', carAlrState.tilt || false);
+    setObjectfun(deviceAlias + '.car_alr_state.trunk', carAlrState.trunk || false);
+    
+    // Services
+    let services = deviceData.services || {};
+    setObjectfun(deviceAlias + '.services.control', services.control || '');
+    setObjectfun(deviceAlias + '.services.settings', services.settings || '');
+    
+    adapter.log.info('Successfully processed detailed data for device: ' + deviceAlias);
+}
+
 function parse_data(getdata){
     let result;
     let device = [];
@@ -270,122 +387,25 @@ function parse_data(getdata){
                 device[t] = deviceData.alias;
                 adapter.log.debug('device- ' + device[t]);
                 
-                // DEBUG: Log the entire device data structure for analysis
-                adapter.log.debug('=== DEVICE DATA DEBUG ===');
-                adapter.log.debug('Device alias: ' + deviceData.alias);
-                adapter.log.debug('Device ID: ' + deviceData.device_id);
-                adapter.log.debug('Raw device data: ' + JSON.stringify(deviceData, null, 2));
-                
-                // DEBUG: Specifically check car_state data
-                if (deviceData.car_state) {
-                    adapter.log.debug('=== CAR STATE DEBUG ===');
-                    adapter.log.debug('car_state object: ' + JSON.stringify(deviceData.car_state, null, 2));
-                    adapter.log.debug('car_state.valet: ' + deviceData.car_state.valet);
-                    adapter.log.debug('car_state.valet type: ' + typeof deviceData.car_state.valet);
-                } else {
-                    adapter.log.debug('WARNING: No car_state object found in device data!');
-                }
-                
-                // DEBUG: Check car_alr_state data
-                if (deviceData.car_alr_state) {
-                    adapter.log.debug('=== CAR ALARM STATE DEBUG ===');
-                    adapter.log.debug('car_alr_state object: ' + JSON.stringify(deviceData.car_alr_state, null, 2));
-                } else {
-                    adapter.log.debug('WARNING: No car_alr_state object found in device data!');
-                }
-                
-                // Basic device information - only set if available
-                setObjectfun(device[t] + '.alias', deviceData.alias, device[t]);
-                setObjectfun(device[t] + '.device_id', deviceData.device_id);
-                setObjectfun(device[t] + '.status', deviceData.status);
-                setObjectfun(device[t] + '.shared_for_me', deviceData.shared_for_me);
-                
-                // Handle position data - check both pos and position objects
-                let positionData = deviceData.position || deviceData.pos || {};
-                if (positionData.sat_qty !== undefined) {
-                    setObjectfun(device[t] + '.position.sat_qty', positionData.sat_qty);
-                }
-                if (positionData.ts !== undefined) {
-                    setObjectfun(device[t] + '.position.ts', positionData.ts);
-                }
-                if (positionData.x !== undefined) {
-                    setObjectfun(device[t] + '.position.longitude', positionData.x);
-                }
-                if (positionData.y !== undefined) {
-                    setObjectfun(device[t] + '.position.latitude', positionData.y);
-                }
-                
-                // Set default values for missing fields to prevent errors
-                setObjectfun(device[t] + '.skey', deviceData.skey || '');
-                setObjectfun(device[t] + '.balance', (deviceData.balance && deviceData.balance.active && deviceData.balance.active.value) || 0);
-                setObjectfun(device[t] + '.battery', deviceData.battery || 0);
-                setObjectfun(device[t] + '.fw_version', deviceData.fw_version || '');
-                setObjectfun(device[t] + '.imei', deviceData.imei || '');
-                setObjectfun(device[t] + '.mayak_temp', deviceData.mayak_temp || 0);
-                setObjectfun(device[t] + '.mon_type', deviceData.mon_type || 0);
-                setObjectfun(device[t] + '.type', deviceData.type || 0);
-                setObjectfun(device[t] + '._controls', deviceData._controls || '');
-                setObjectfun(device[t] + '.reg', deviceData.reg || '');
-                setObjectfun(device[t] + '.rpl_channel', deviceData.rpl_channel || '');
-                setObjectfun(device[t] + '.sn', deviceData.sn || '');
-                setObjectfun(device[t] + '.ts_activity', deviceData.ts_activity || 0);
-                setObjectfun(device[t] + '.shortParking', deviceData.shortParking || 0);
-                setObjectfun(device[t] + '.longParking', deviceData.longParking || 0);
-                setObjectfun(device[t] + '.showInsuranceEvents', deviceData.showInsuranceEvents || false);
-                setObjectfun(device[t] + '.ctemp', deviceData.ctemp || 0);
-                setObjectfun(device[t] + '.etemp', deviceData.etemp || 0);
-                setObjectfun(device[t] + '.gps_lvl', deviceData.gps_lvl || 0);
-                setObjectfun(device[t] + '.gsm_lvl', deviceData.gsm_lvl || 0);
-                setObjectfun(device[t] + '.phone', deviceData.phone || '');
-                
-                // Car state - set defaults for missing fields
-                let carState = deviceData.car_state || {};
-                adapter.log.debug('=== PROCESSING CAR STATES ===');
-                adapter.log.debug('carState.valet raw value: ' + carState.valet);
-                adapter.log.debug('carState.valet after || false: ' + (carState.valet || false));
-                
-                setObjectfun(device[t] + '.car_state.add_sens_bpass', carState.add_sens_bpass || false);
-                setObjectfun(device[t] + '.car_state.alarm', carState.alarm || false);
-                setObjectfun(device[t] + '.car_state.arm', carState.arm || false);
-                setObjectfun(device[t] + '.car_state.door', carState.door || false);
-                setObjectfun(device[t] + '.car_state.hbrake', carState.hbrake || false);
-                setObjectfun(device[t] + '.car_state.hijack', carState.hijack || false);
-                setObjectfun(device[t] + '.car_state.hood', carState.hood || false);
-                setObjectfun(device[t] + '.car_state.ign', carState.ign || false);
-                setObjectfun(device[t] + '.car_state.out', carState.out || false);
-                setObjectfun(device[t] + '.car_state.pbrake', carState.pbrake || false);
-                setObjectfun(device[t] + '.car_state.r_start', carState.r_start || false);
-                setObjectfun(device[t] + '.car_state.run', carState.run || false);
-                setObjectfun(device[t] + '.car_state.shock_bpass', carState.shock_bpass || false);
-                setObjectfun(device[t] + '.car_state.tilt_bpass', carState.tilt_bpass || false);
-                setObjectfun(device[t] + '.car_state.trunk', carState.trunk || false);
-                setObjectfun(device[t] + '.car_state.valet', carState.valet || false);
-                adapter.log.debug('Setting car_state.valet to: ' + (carState.valet || false));
-                setObjectfun(device[t] + '.car_state.webasto', carState.webasto || false);
-                
-                // Car alarm state - set defaults for missing fields
-                let carAlrState = deviceData.car_alr_state || {};
-                setObjectfun(device[t] + '.car_alr_state.add_h', carAlrState.add_h || false);
-                setObjectfun(device[t] + '.car_alr_state.add_l', carAlrState.add_l || false);
-                setObjectfun(device[t] + '.car_alr_state.door', carAlrState.door || false);
-                setObjectfun(device[t] + '.car_alr_state.hbrake', carAlrState.hbrake || false);
-                setObjectfun(device[t] + '.car_alr_state.hijack', carAlrState.hijack || false);
-                setObjectfun(device[t] + '.car_alr_state.hood', carAlrState.hood || false);
-                setObjectfun(device[t] + '.car_alr_state.ign', carAlrState.ign || false);
-                setObjectfun(device[t] + '.car_alr_state.pbrake', carAlrState.pbrake || false);
-                setObjectfun(device[t] + '.car_alr_state.shock_h', carAlrState.shock_h || false);
-                setObjectfun(device[t] + '.car_alr_state.shock_l', carAlrState.shock_l || false);
-                setObjectfun(device[t] + '.car_alr_state.tilt', carAlrState.tilt || false);
-                setObjectfun(device[t] + '.car_alr_state.trunk', carAlrState.trunk || false);
-                
-                // Services - set defaults for missing fields
-                let services = deviceData.services || {};
-                setObjectfun(device[t] + '.services.control', services.control || '');
-                setObjectfun(device[t] + '.services.settings', services.settings || '');
-                
-                // Position additional fields - set defaults
-                setObjectfun(device[t] + '.position.dir', positionData.dir || 0);
-                setObjectfun(device[t] + '.position.s', positionData.s || 0);
+                // Get detailed device data including car states
+                getDetailedDeviceData(deviceData.device_id, device[t]);
+            }
+            adapter.log.info('Data received restart in ' + timePool / 1000 + ' sec.');
+            reload_data = setTimeout(() => {
+                get_data();
+            }, timePool);
+        }
+        if (result.result === 0){
+            error('Error get Parse Data:' + result.answer.error);
+            reAuth();
+        }
+    } catch (e) {
+        adapter.log.error('Parse error DATA' + JSON.stringify(getdata));
+        adapter.log.error('Parse error details: ' + e.message);
+        reAuth();
+    }
+}
+
             }
             adapter.log.info('Data received restart in ' + timePool / 1000 + ' sec.');
             reload_data = setTimeout(() => {
@@ -494,14 +514,7 @@ function setObjectfun(name, state, device){
         write: false
     };
     
-    // DEBUG: Log state setting for valet specifically
-    if (name.includes('valet')) {
-        adapter.log.debug('=== SETOBJECTFUN DEBUG ===');
-        adapter.log.debug('Setting state: ' + name);
-        adapter.log.debug('State value: ' + state);
-        adapter.log.debug('State type: ' + typeof state);
-        adapter.log.debug('State definition: ' + JSON.stringify(stateDef));
-    }
+
     
     adapter.setObject(name, {
         type:   'state',
@@ -516,10 +529,7 @@ function setObjectfun(name, state, device){
     });
     adapter.setState(name, {val: state, ack: true});
     
-    // DEBUG: Log after setting state for valet
-    if (name.includes('valet')) {
-        adapter.log.debug('State set successfully: ' + name + ' = ' + state);
-    }
+
 }
 
 /******************************************************************/
