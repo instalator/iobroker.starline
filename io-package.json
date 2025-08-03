@@ -118,14 +118,14 @@
     ],
     "platform": "Javascript/Node.js",
     "mode": "daemon",
-    "icon": "logo-192x192.png",
+    "icon": "https://github.com/tglynx/ioBroker.starline/blob/9e6a1d081d76c495ea3c04d38767664497a9a29c/admin/logo-192x192.png",
     "enabled": false,
     "compact": true,
     "adminUI": {
       "config": "json",
       "configFile": "admin/jsonConfig.json"
     },
-    "extIcon": "https://github.com/tglynx/ioBroker.starline/blob/9e6a1d081d76c495ea3c04d38767664497a9a29c/admin/starline.png",
+    "extIcon": "https://github.com/tglynx/ioBroker.starline/blob/9e6a1d081d76c495ea3c04d38767664497a9a29c/admin/logo-192x192.png",
     "keywords": [
       "starline",
       "vis"
