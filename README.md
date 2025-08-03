@@ -13,7 +13,26 @@ The adapter lets you retrieve vehicle status data through the StarLine Telematic
  - Request the vehicle’s GPS coordinates
  - Disable the shock and tilt sensors
 
+[![Donate](https://img.shields.io/badge/donate-YooMoney-green)](https://sobe.ru/na/instalator)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PFUALWTR2CTPY)
+
+Для работы драйвера необходимо установленное и настроенное противоугонное устройство поддерживающее сервис StarLine телематика 2.0.
+
+Драйвер позволяет получать данные состояния автомобиля через сервис StarLine Телематика. https://starline-online.ru.
+##### Управление основными режимами работы автосигнализации:
+  - Постановка/снятие с охраны
+  - Активация функции AntiHiJack
+  - Автозапуск
+  - Активация сервисного режима (Valet)
+  - Активация доп. каналов
+  - Включение/отключение подогревателя Webasto (При его наличии)
+  - Запрос координат автомобиля
+  - Отключение датчиков удара и наклона
+
 ## Changelog
+
+#### 2.1.0
+* (tglynx) modernized the adapter to support the current (August 2025) starline website api
 
 #### 2.0.0
 * (instalator) latest working version from 2021
