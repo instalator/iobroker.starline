@@ -404,26 +404,7 @@ function parse_data(getdata){
         adapter.log.error('Parse error details: ' + e.message);
         reAuth();
     }
-}
 
-            }
-            adapter.log.info('Data received restart in ' + timePool / 1000 + ' sec.');
-            reload_data = setTimeout(() => {
-                get_data();
-            }, timePool);
-        }
-        if (result.result === 0){
-            error('Error get Parse Data:' + result.answer.error);
-            //adapter.log.error('Error get Parse Data:' + result.answer.error);
-            //CONSTRUCTION - Тех работы на сайте.
-            reAuth();
-        }
-    } catch (e) {
-        adapter.log.error('Parse error DATA' + JSON.stringify(getdata));
-        adapter.log.error('Parse error details: ' + e.message);
-        reAuth();
-    }
-}
 
 function reAuth(){
     adapter.setState('info.connection', false, true);
@@ -534,10 +515,6 @@ function setObjectfun(name, state, device){
 
 /******************************************************************/
 function send_command(device_id, action, value){
-    adapter.log.debug('=== SEND_COMMAND DEBUG ===');
-    adapter.log.debug('Sending command - Device ID: ' + device_id + ', Action: ' + action + ', Value: ' + value);
-    adapter.log.debug('Value type: ' + typeof value);
-    
     data = '';
     let path = '/device/' + device_id + '/executeCommand';
     let post_data;
@@ -594,9 +571,6 @@ function send_command(device_id, action, value){
     };
     let req = https.request(options, (res) => {
         //res.setEncoding('utf8');
-        adapter.log.debug('send_command - Request URL: https://starline-online.ru' + path);
-        adapter.log.debug('send_command - Request method: ' + options.method);
-        adapter.log.debug('send_command - Request headers: ' + JSON.stringify(options.headers));
         adapter.log.debug('send_command - Response statusCode: ' + res.statusCode);
 
         res.on('data', (chunk) => {
