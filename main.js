@@ -270,6 +270,30 @@ function parse_data(getdata){
                 device[t] = deviceData.alias;
                 adapter.log.debug('device- ' + device[t]);
                 
+                // DEBUG: Log the entire device data structure for analysis
+                adapter.log.debug('=== DEVICE DATA DEBUG ===');
+                adapter.log.debug('Device alias: ' + deviceData.alias);
+                adapter.log.debug('Device ID: ' + deviceData.device_id);
+                adapter.log.debug('Raw device data: ' + JSON.stringify(deviceData, null, 2));
+                
+                // DEBUG: Specifically check car_state data
+                if (deviceData.car_state) {
+                    adapter.log.debug('=== CAR STATE DEBUG ===');
+                    adapter.log.debug('car_state object: ' + JSON.stringify(deviceData.car_state, null, 2));
+                    adapter.log.debug('car_state.valet: ' + deviceData.car_state.valet);
+                    adapter.log.debug('car_state.valet type: ' + typeof deviceData.car_state.valet);
+                } else {
+                    adapter.log.debug('WARNING: No car_state object found in device data!');
+                }
+                
+                // DEBUG: Check car_alr_state data
+                if (deviceData.car_alr_state) {
+                    adapter.log.debug('=== CAR ALARM STATE DEBUG ===');
+                    adapter.log.debug('car_alr_state object: ' + JSON.stringify(deviceData.car_alr_state, null, 2));
+                } else {
+                    adapter.log.debug('WARNING: No car_alr_state object found in device data!');
+                }
+                
                 // Basic device information - only set if available
                 setObjectfun(device[t] + '.alias', deviceData.alias, device[t]);
                 setObjectfun(device[t] + '.device_id', deviceData.device_id);
@@ -316,6 +340,10 @@ function parse_data(getdata){
                 
                 // Car state - set defaults for missing fields
                 let carState = deviceData.car_state || {};
+                adapter.log.debug('=== PROCESSING CAR STATES ===');
+                adapter.log.debug('carState.valet raw value: ' + carState.valet);
+                adapter.log.debug('carState.valet after || false: ' + (carState.valet || false));
+                
                 setObjectfun(device[t] + '.car_state.add_sens_bpass', carState.add_sens_bpass || false);
                 setObjectfun(device[t] + '.car_state.alarm', carState.alarm || false);
                 setObjectfun(device[t] + '.car_state.arm', carState.arm || false);
@@ -332,6 +360,7 @@ function parse_data(getdata){
                 setObjectfun(device[t] + '.car_state.tilt_bpass', carState.tilt_bpass || false);
                 setObjectfun(device[t] + '.car_state.trunk', carState.trunk || false);
                 setObjectfun(device[t] + '.car_state.valet', carState.valet || false);
+                adapter.log.debug('Setting car_state.valet to: ' + (carState.valet || false));
                 setObjectfun(device[t] + '.car_state.webasto', carState.webasto || false);
                 
                 // Car alarm state - set defaults for missing fields
@@ -465,6 +494,15 @@ function setObjectfun(name, state, device){
         write: false
     };
     
+    // DEBUG: Log state setting for valet specifically
+    if (name.includes('valet')) {
+        adapter.log.debug('=== SETOBJECTFUN DEBUG ===');
+        adapter.log.debug('Setting state: ' + name);
+        adapter.log.debug('State value: ' + state);
+        adapter.log.debug('State type: ' + typeof state);
+        adapter.log.debug('State definition: ' + JSON.stringify(stateDef));
+    }
+    
     adapter.setObject(name, {
         type:   'state',
         common: {
@@ -477,10 +515,19 @@ function setObjectfun(name, state, device){
         native: {}
     });
     adapter.setState(name, {val: state, ack: true});
+    
+    // DEBUG: Log after setting state for valet
+    if (name.includes('valet')) {
+        adapter.log.debug('State set successfully: ' + name + ' = ' + state);
+    }
 }
 
 /******************************************************************/
 function send_command(device_id, action, value){
+    adapter.log.debug('=== SEND_COMMAND DEBUG ===');
+    adapter.log.debug('Sending command - Device ID: ' + device_id + ', Action: ' + action + ', Value: ' + value);
+    adapter.log.debug('Value type: ' + typeof value);
+    
     data = '';
     let path = '/device/' + device_id + '/executeCommand';
     let post_data;
