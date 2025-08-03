@@ -220,7 +220,7 @@ function get_data(){
     let options = {
         hostname: 'starline-online.ru',
         port:     443,
-        path:     '/device?tz=360&_=' + eS, //list
+        path:     '/device?tz=120&_=' + eS, //list
         method:   'GET'
     };
     options.headers = {
@@ -284,10 +284,10 @@ function getDetailedDeviceData(device_id, deviceAlias) {
             if (res.statusCode === 200) {
                 try {
                     let deviceData = JSON.parse(detailedData);
-                    adapter.log.debug('Received detailed data for ' + deviceAlias + ': ' + detailedData.substring(0, 200) + '...');
+                    adapter.log.debug('Received detailed data for ' + deviceAlias + ': ' + detailedData.substring(0, 500) + '...');
                     processDetailedDeviceData(deviceData, deviceAlias);
                 } catch (e) {
-                    adapter.log.error('Error parsing detailed device data: ' + e.message);
+                    adapter.log.error('Error parsing detailed device data: ' + (e instanceof Error ? e.message : String(e)));
                 }
             } else {
                 adapter.log.error('Failed to get detailed data for device ' + deviceAlias + ': ' + res.statusCode);
