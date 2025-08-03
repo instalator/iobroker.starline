@@ -125,7 +125,7 @@
       "config": "json",
       "configFile": "admin/jsonConfig.json"
     },
-    "extIcon": "https://raw.githubusercontent.com/tglynx/ioBroker.starline/main/admin/logo-192x192.png",
+    "extIcon": "https://github.com/tglynx/ioBroker.starline/blob/main/admin/logo-192x192.png",
     "keywords": [
       "starline",
       "vis"
