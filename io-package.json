@@ -135,8 +135,11 @@
     "type": "vehicle",
     "connectionType": "cloud",
     "dataSource": "poll",
-    "dependencies": [],
-    "js-controller": ">=5.0.19",
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.19"
+      }
+    ],
     "protectedNative": [
       "password"
     ],
