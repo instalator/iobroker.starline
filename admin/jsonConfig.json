@@ -8,7 +8,6 @@
         "login": {
           "type": "text",
           "label": "Login",
-          "required": true,
           "help": "Your StarLine account login/email",
           "size": {
             "xs": 12,
@@ -21,7 +20,6 @@
         "password": {
           "type": "password",
           "label": "Password",
-          "required": true,
           "help": "Your StarLine account password",
           "size": {
             "xs": 12,
