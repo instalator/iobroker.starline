@@ -13,9 +13,6 @@ The adapter lets you retrieve vehicle status data through the StarLine Telematic
  - Request the vehicle’s GPS coordinates
  - Disable the shock and tilt sensors
 
-[![Donate](https://img.shields.io/badge/donate-YooMoney-green)](https://sobe.ru/na/instalator)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PFUALWTR2CTPY)
-
 Для работы драйвера необходимо установленное и настроенное противоугонное устройство поддерживающее сервис StarLine телематика 2.0.
 
 Драйвер позволяет получать данные состояния автомобиля через сервис StarLine Телематика. https://starline-online.ru.
@@ -28,6 +25,9 @@ The adapter lets you retrieve vehicle status data through the StarLine Telematic
   - Включение/отключение подогревателя Webasto (При его наличии)
   - Запрос координат автомобиля
   - Отключение датчиков удара и наклона
+    
+[![Donate](https://img.shields.io/badge/donate-YooMoney-green)](https://sobe.ru/na/instalator)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PFUALWTR2CTPY)
 
 ## Changelog
 
